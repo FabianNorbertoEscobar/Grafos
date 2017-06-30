@@ -43,5 +43,11 @@ public class Main {
 		else
 			System.out.println("MAL COLOREADO");
 		*/
+		
+		/*
+		GrafoNDP grafo = new GrafoNDP("grafo.in");
+		Dijkstra dijkstra = new Dijkstra(grafo, 0);
+		dijkstra.ejecutar();
+		*/
 	}
 }

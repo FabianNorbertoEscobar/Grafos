@@ -32,10 +32,6 @@ public class GrafoNDP {
 	private int[] solucion;
 	private int[] mejoresColores;
 
-	public MatrizSimetrica getGrafo() {
-		return this.grafo;
-	}
-
 	public GrafoNDP(String path) throws FileNotFoundException {
 		File file = new File(path);
 		Scanner scan = new Scanner(file);
@@ -50,12 +46,12 @@ public class GrafoNDP {
 		this.gradoMax = scan.nextInt();
 		this.gradoMin = scan.nextInt();
 		this.grafo = new MatrizSimetrica(this.cantNodos);
-		this.dimensionPesosAristas = this.cantNodos * this.cantNodos - this.cantNodos;
+		this.dimensionPesosAristas = (this.cantNodos * this.cantNodos - this.cantNodos) / 2;
 		this.colorMax = 1;
 		nodos = new ArrayList<Nodo>();
 		nodosColoreados = new int[this.cantNodos];
 		gradosNodos = new int[this.cantNodos];
-		pesosAristas = new int[this.dimensionPesosAristas / 2];
+		pesosAristas = new int[this.dimensionPesosAristas];
 		solucion = new int[this.cantNodos];
 		mejoresColores = new int[this.cantNodos];
 
@@ -287,4 +283,33 @@ public class GrafoNDP {
 
 		buffer.close();
 	}
+
+	public int getCantNodos() {
+		return cantNodos;
+	}
+
+	public int getCantAristas() {
+		return cantAristas;
+	}
+
+	public double getPtajeAdyacencia() {
+		return ptajeAdyacencia;
+	}
+
+	public int getGradoMax() {
+		return gradoMax;
+	}
+
+	public int getGradoMin() {
+		return gradoMin;
+	}
+	
+	public int getPesoArista(int indice) {
+		return pesosAristas[indice];
+	}
+
+	public MatrizSimetrica getGrafo() {
+		return this.grafo;
+	}
+
 }

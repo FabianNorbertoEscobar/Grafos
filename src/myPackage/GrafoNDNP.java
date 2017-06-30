@@ -30,10 +30,6 @@ public class GrafoNDNP {
 	private int[] solucion;
 	private int[] mejoresColores;
 
-	public MatrizSimetrica getGrafo() {
-		return this.grafo;
-	}
-
 	public GrafoNDNP(String path) throws FileNotFoundException {
 		File file = new File(path);
 		Scanner scan = new Scanner(file);
@@ -277,6 +273,30 @@ public class GrafoNDNP {
 		}
 
 		buffer.close();
+	}
+	
+	public int getCantNodos() {
+		return cantNodos;
+	}
+
+	public int getCantAristas() {
+		return cantAristas;
+	}
+
+	public double getPtajeAdyacencia() {
+		return ptajeAdyacencia;
+	}
+
+	public int getGradoMax() {
+		return gradoMax;
+	}
+
+	public int getGradoMin() {
+		return gradoMin;
+	}
+
+	public MatrizSimetrica getGrafo() {
+		return this.grafo;
 	}
 
 }
