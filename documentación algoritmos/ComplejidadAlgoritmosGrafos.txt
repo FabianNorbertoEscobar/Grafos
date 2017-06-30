@@ -14,7 +14,7 @@ FLOYD:
 O(n^3) con matriz de costos
 
 WARSHALL:
-O(n^3) con matrixz booleana
+O(n^3) con matriz booleana
 
 DFS: Búsqueda en profundidad:
 O(n+m) con pila
