@@ -18,9 +18,13 @@ O(n^3) con matrixz booleana
 
 DFS: Búsqueda en profundidad:
 O(n+m) con pila
+O(n^2) cuando el grafo es muy conexo
+O(n) cuando el grafo es poco conexo
 
 BFS: Búsqueda en archura
 O(n+m) con cola
+O(n^2) cuando el grafo es muy conexo
+O(n) cuando el grafo es poco conexo
 
 COLOREO SECUENCIAL ALEATORIO O VORAZ:
 O(n^2)
