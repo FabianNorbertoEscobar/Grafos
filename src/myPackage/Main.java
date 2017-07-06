@@ -49,5 +49,9 @@ public class Main {
 		Dijkstra dijkstra = new Dijkstra(grafo, 0);
 		dijkstra.ejecutar();
 		*/
+		
+		GrafoNDP grafo = new GrafoNDP("grafo.in");
+		Kruskal kruskal = new Kruskal(grafo);
+		kruskal.ejecutar();
 	}
 }

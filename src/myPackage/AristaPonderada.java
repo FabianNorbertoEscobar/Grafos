@@ -1,6 +1,6 @@
 package myPackage;
 
-public class AristaPonderada extends Arista {
+public class AristaPonderada extends Arista implements Comparable<AristaPonderada> {
 
 	private int peso;
 
@@ -20,5 +20,10 @@ public class AristaPonderada extends Arista {
 	@Override
 	public void mostrar() {
 		System.out.println(this.getNodo1() + " " + this.getNodo2() + " " + this.getPeso());
+	}
+
+	@Override
+	public int compareTo(AristaPonderada arista) {
+		return this.peso - arista.getPeso();
 	}
 }

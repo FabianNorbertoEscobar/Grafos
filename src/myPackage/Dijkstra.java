@@ -15,7 +15,7 @@ public class Dijkstra {
 
 	private int cantNodos;
 	boolean nodoTerminado[];
-	ArrayList<CostoAlNodo> costos;
+	private ArrayList<CostoAlNodo> costos;
 
 	private static final int INFINITO = -1;
 
@@ -104,6 +104,14 @@ public class Dijkstra {
 		}
 		
 		// muestro solución en consola
+		this.escribirSolucionEnConsola();
+		
+		// escribo la solución completa en un archivo
+		this.escribirSolucionEnArchivo("DIJKSTRA" + "_" + this.cantNodos + "_"
+				+ String.format("%.2f", this.getGrafo().getPtajeAdyacencia()) + ".out");
+	}
+
+	private void escribirSolucionEnConsola() {
 		int costo;
 		System.out.println("DIJKSTRA: Nodo Inicial: " + this.nodoInicial);
 		for (int i = 0; i < this.costos.size(); i++) {
@@ -113,14 +121,10 @@ public class Dijkstra {
 			} else {
 				System.out.println("Nodo Final: " + i + " Costo del Camino Más Corto: " + costo);
 			}
-		}
-		
-		// escribo la solución completa en un archivo
-		this.escribirSolucion("DIJKSTRA" + "_" + this.cantNodos + "_"
-				+ String.format("%.2f", this.getGrafo().getPtajeAdyacencia()) + ".out");
+		}		
 	}
 
-	private void escribirSolucion(String path) throws IOException {
+	private void escribirSolucionEnArchivo(String path) throws IOException {
 		FileWriter file = new FileWriter(path);
 		BufferedWriter buffer = new BufferedWriter(file);
 
