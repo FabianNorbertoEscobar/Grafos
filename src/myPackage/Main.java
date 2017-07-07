@@ -50,8 +50,16 @@ public class Main {
 		dijkstra.ejecutar();
 		*/
 		
+		/*
 		GrafoNDP grafo = new GrafoNDP("grafo.in");
 		Kruskal kruskal = new Kruskal(grafo);
 		kruskal.ejecutar();
+		*/
+		
+		/*
+		GrafoNDP grafo = new GrafoNDP("grafo.in");
+		Prim prim = new Prim(grafo);
+		prim.ejecutar();
+		*/
 	}
 }
