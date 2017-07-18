@@ -61,5 +61,12 @@ public class Main {
 		Prim prim = new Prim(grafo);
 		prim.ejecutar();
 		*/
+		
+		/*
+		GrafoDP digrafo = new GrafoDP("grafo.in");
+		digrafo.coloreoSecuencial(10);
+		digrafo.coloreoWelshPowell(10);
+		digrafo.coloreoMatula(10);
+		*/
 	}
 }
