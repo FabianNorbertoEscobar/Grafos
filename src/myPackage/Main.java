@@ -68,5 +68,9 @@ public class Main {
 		digrafo.coloreoWelshPowell(10);
 		digrafo.coloreoMatula(10);
 		*/
+		
+		GrafoDP digrafo = new GrafoDP("grafo.in");
+		Floyd floyd = new Floyd(digrafo);
+		floyd.ejecutar();
 	}
 }
