@@ -5,13 +5,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.NumberFormat;
 
-public class Floyd {
+public class Warshall {
 
 	private static final int INFINITO = -1;
 	private GrafoDP grafo;
 	private int cantNodos;
 	
-	private int[][] costosMinimos;
+	private boolean[][] caminos;
 
 	public GrafoDP getGrafo() {
 		return grafo;
@@ -21,21 +21,29 @@ public class Floyd {
 		return cantNodos;
 	}
 
-	public int[][] getCostosMinimos() {
-		return costosMinimos;
+	public boolean[][] getCaminos() {
+		return caminos;
 	}
 
-	public Floyd(GrafoDP grafo) {
+	public Warshall(GrafoDP grafo) {
 		this.grafo = grafo;
 		this.cantNodos = grafo.getCantNodos();
-		this.costosMinimos = new int[this.cantNodos][this.cantNodos];	
+		this.caminos = new boolean[this.cantNodos][this.cantNodos];	
 	}
 	
 	public void ejecutar() throws IOException {
-		// clono la matriz de adyacencia para calcular los costos mínimos
-		this.costosMinimos = this.grafo.getGrafo().clone();
+		// armo la matriz booleana para evaluar si hay caminos
+		for (int i = 0; i < this.cantNodos; i++) {
+			for (int j = 0; j < this.cantNodos; j++) {
+				if (this.grafo.getGrafo()[i][j] != INFINITO && this.grafo.getGrafo()[i][j] != 0) {
+					this.caminos[i][j] = true;
+				} else {
+					this.caminos[i][j] = false;
+				}
+			}
+		}
 		
-		int anterior, ik, kj, actual, minimo;
+		boolean anterior, ik, kj, actual;
 		
 		// para cada iteración k del algoritmo
 		for (int k = 0; k < this.cantNodos; k++) {
@@ -46,25 +54,16 @@ public class Floyd {
 					
 					// si el pivot ij no está en la diagonal principal ni en la fila k o columna k
 					if (i != j && k != i && k != j) {
-						// costo de la iteración anterior
-						anterior = this.costosMinimos[i][j];
+						// existe camino en la iteración anterior
+						anterior = this.caminos[i][j];
 						
-						// costo de usar como intermediario al nodo k
-						ik = this.costosMinimos[i][k];
-						kj = this.costosMinimos[k][j];
-						if (ik == INFINITO || kj == INFINITO) {
-							actual = INFINITO;
-						} else {
-							actual = ik + kj;
-						}
-						
-						// selecciono el costo mínimo
-						if (actual != INFINITO && actual < anterior) {
-							minimo = actual;
-						} else {
-							minimo = anterior;
-						}
-						this.costosMinimos[i][j] = minimo;
+						// existe camino usando como intermediario al nodo k
+						ik = this.caminos[i][k];
+						kj = this.caminos[k][j];
+						actual = (ik && kj);
+								
+						// existe algún camino
+						this.caminos[i][j] = (anterior || actual);
 					}
 				}
 			}
@@ -74,22 +73,16 @@ public class Floyd {
 		this.escribirSolucionEnConsola();
 				
 		// escribo la solución completa en un archivo
-		this.escribirSolucionEnArchivo("FLOYD" + "_" + this.cantNodos + "_"
+		this.escribirSolucionEnArchivo("WARSHALL" + "_" + this.cantNodos + "_"
 						+ String.format("%.2f", this.getGrafo().getPtajeAdyacencia()) + ".out");
 			
 	}
 
 	private void escribirSolucionEnConsola() {
-		int costo;
-		System.out.println("FLOYD: Costos mínimos entre todos los nodos ");
+		System.out.println("WARSHALL: Caminos entre todos los nodos ");
 		for (int i = 0; i < this.cantNodos; i++) {
 			for (int j = 0; j < this.cantNodos; j++) {
-				costo = this.costosMinimos[i][j];
-				if (costo == INFINITO) {
-					System.out.println("Nodo Inicial: " + i + " Nodo Final: " + j + " Costo del Camino Más Corto: INFINITO");
-				} else {
-					System.out.println("Nodo Inicial: " + i + " Nodo Final: " + j + " Costo del Camino Más Corto: " + costo);
-				}
+				System.out.println("Nodo Inicial: " + i + " Nodo Final: " + j + " Existe camino: " + this.caminos[i][j]);
 			}
 		}	
 	}
@@ -115,12 +108,11 @@ public class Floyd {
 				buffer.write(" ");
 				buffer.write(String.valueOf(j));
 				buffer.write(" ");
-				buffer.write(String.valueOf(this.costosMinimos[i][j]));
+				buffer.write(String.valueOf(this.caminos[i][j]));
 				buffer.newLine();
 			}
 		}	
 		
 		buffer.close();
 	}
-	
 }

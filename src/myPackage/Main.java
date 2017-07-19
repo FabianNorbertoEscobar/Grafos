@@ -69,8 +69,16 @@ public class Main {
 		digrafo.coloreoMatula(10);
 		*/
 		
+		/*
 		GrafoDP digrafo = new GrafoDP("grafo.in");
 		Floyd floyd = new Floyd(digrafo);
 		floyd.ejecutar();
+		*/
+		
+		/*
+		GrafoDP digrafo = new GrafoDP("grafo.in");
+		Warshall warshall = new Warshall(digrafo);
+		warshall.ejecutar();
+		*/
 	}
 }
