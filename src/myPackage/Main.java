@@ -80,5 +80,9 @@ public class Main {
 		Warshall warshall = new Warshall(digrafo);
 		warshall.ejecutar();
 		*/
+		
+		GrafoNDNP grafo = new GrafoNDNP("grafo.in");
+		DFS dfs = new DFS(grafo, 4);
+		dfs.ejecutar();
 	}
 }
