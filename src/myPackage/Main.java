@@ -81,8 +81,16 @@ public class Main {
 		warshall.ejecutar();
 		*/
 		
+		/*
 		GrafoNDNP grafo = new GrafoNDNP("grafo.in");
 		DFS dfs = new DFS(grafo, 4);
 		dfs.ejecutar();
+		*/
+		
+		/*
+		GrafoNDNP grafo = new GrafoNDNP("grafo.in");
+		BFS bfs = new BFS(grafo, 4);
+		bfs.ejecutar();
+		*/
 	}
 }
