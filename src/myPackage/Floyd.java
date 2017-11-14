@@ -59,7 +59,7 @@ public class Floyd {
 						}
 						
 						// selecciono el costo mínimo
-						if (actual != INFINITO && actual < anterior) {
+						if (actual != INFINITO && (actual < anterior || anterior == INFINITO)) {
 							minimo = actual;
 						} else {
 							minimo = anterior;
